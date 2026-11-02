@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Departments | HR System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <input type="checkbox" id="nav-toggle">
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <h2><span class="fas fa-cube"></span> <span>HR System</span></h2>
+        </div>
+        <div class="sidebar-menu">
+            <ul id="sidebar-menu-list">
+                </ul>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h2>
+                <label for="nav-toggle" class="mobile-toggle">
+                    <span class="fas fa-bars"></span>
+                </label>
+                Departments Management
+            </h2>
+
+            <div class="search-wrapper">
+                <span class="fas fa-search"></span>
+                <input type="search" id="dept-search-input" placeholder="Search departments...">
+            </div>
+
+            <div class="user-wrapper">
+                <img id="nav-user-pic" src="https://ui-avatars.com/api/?name=User&background=ddd&color=fff" width="40px" height="40px" alt="">
+                
+                <div>
+                    <h4 id="nav-user-name">Loading...</h4>
+                    <small id="nav-user-role">Manager</small>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="dept-grid" id="dept-grid">
+                <div class="loading-card">Loading Departments...</div>
+            </div>
+        </main>
+    </div>
+    <div id="deptModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="modalTitle">Add Department</h3>
+            <span class="close-modal" onclick="closeDeptModal()">&times;</span>
+        </div>
+        
+        <form id="deptForm" onsubmit="handleDeptSubmit(event)">
+            <input type="hidden" id="deptId">
+
+            <div class="form-group">
+                <label>Department Name</label>
+                <input type="text" id="deptName" required placeholder="e.g. Legal Team">
+            </div>
+
+            <div class="form-group">
+                <label>Manager Name</label>
+                <input type="text" id="deptManager" placeholder="e.g. Sarah Connor">
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn-cancel" onclick="closeDeptModal()">Cancel</button>
+                <button type="submit" class="btn-save">Save Department</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+    <script src="script.js"></script>
+    <script>
+        // Auto-load logic when page opens
+        document.addEventListener('DOMContentLoaded', () => {
+            loadUserData(); // Fixes the header name
+            loadDepartments(); // New function we will write
+        });
+    </script>
+</body>
+</html>

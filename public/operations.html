@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Operations | HR System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <input type="checkbox" id="nav-toggle">
+    <div class="sidebar"><ul id="sidebar-menu-list"></ul></div>
+
+    <div class="main-content">
+        <header>
+            <h2>Operations Center</h2>
+            <div class="header-actions">
+                <div class="user-wrapper">
+                    <img id="nav-user-pic" src="" width="40px" height="40px">
+                    <div><h4 id="nav-user-name"></h4><small id="nav-user-role">...</small></div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="dept-grid">
+                <div class="dept-card border-IT">
+                    <div class="dept-header">
+                        <div class="dept-info">
+                            <h3>My Department</h3>
+                            <span id="op-dept-name" style="color: #1abc9c; font-weight: bold;">Loading...</span>
+                        </div>
+                        <div class="dept-icon"><i class="fas fa-building"></i></div>
+                    </div>
+                </div>
+
+                <div class="dept-card border-Mng">
+                    <div class="dept-header">
+                        <div class="dept-info">
+                            <h3>My Team</h3>
+                            <span id="op-team-name" style="color: #9b59b6; font-weight: bold;">Loading...</span>
+                        </div>
+                        <div class="dept-icon"><i class="fas fa-users"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 2rem;">
+                <div class="card-header">
+                    <h3>Assigned Tasks & Projects</h3>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table width="100%">
+                            <thead>
+                                <tr>
+                                    <td>Project Name</td>
+                                    <td>Task Title</td>
+                                    <td>Priority</td>
+                                    <td>Current Status</td>
+                                </tr>
+                            </thead>
+                            <tbody id="op-tasks-body">
+                                <tr><td colspan="4" style="text-align:center;">Fetching your assignments...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadUserData();
+            loadOperationsData(); // New function we will add to script.js
+        });
+    </script>
+</body>
+</html>

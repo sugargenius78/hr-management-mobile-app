@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Management | HR System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <input type="checkbox" id="nav-toggle">
+    
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <h2><span class="fas fa-cube"></span> <span>HR System</span></h2>
+        </div>
+        <div class="sidebar-menu">
+            <ul id="sidebar-menu-list">
+                </ul>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h2>
+                <label for="nav-toggle" class="mobile-toggle">
+                    <span class="fas fa-bars"></span>
+                </label>
+                Leave Management
+            </h2>
+
+            <div class="search-wrapper">
+                <span class="fas fa-search"></span>
+                <input type="search" placeholder="Search leaves, employees...">
+            </div>
+
+            <div class="user-wrapper">
+                <img id="nav-user-pic" src="https://ui-avatars.com/api/?name=User&background=ddd&color=fff" width="40px" height="40px" alt="">
+                
+                <div>
+                    <h4 id="nav-user-name">Loading...</h4>
+                    <small id="nav-user-role">Manager</small>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="cards">
+                <div class="card-single">
+                    <div><h1 id="count-pending">0</h1><span>Pending Requests</span></div>
+                    <div><span class="fas fa-clock" style="color: #f39c12;"></span></div>
+                </div>
+                <div class="card-single">
+                    <div><h1 id="count-approved">0</h1><span>Approved Today</span></div>
+                    <div><span class="fas fa-check-circle" style="color: #2ecc71;"></span></div>
+                </div>
+                <div class="card-single">
+                    <div><h1 id="count-rejected">0</h1><span>Rejected</span></div>
+                    <div><span class="fas fa-times-circle" style="color: #e74c3c;"></span></div>
+                </div>
+            </div>
+
+            <div class="recent-grid">
+                <div class="projects">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Recent Leave Requests</h3>
+                        </div>
+                        <div class="card-body">
+                            <table width="100%">
+                                <thead>
+                                    <tr>
+                                        <td>Employee</td>
+                                        <td>Duration (Days)</td> <td>Reason</td>
+                                        <td>Status</td>
+                                        <td>Action</td>
+                                    </tr>
+                                </thead>
+                                <tbody id="leave-table-body">
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadUserData();
+            loadLeaves();
+        });
+    </script>
+</body>
+</html>

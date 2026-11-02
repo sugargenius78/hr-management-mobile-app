@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Leave Requests | HR System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <input type="checkbox" id="nav-toggle">
+    <div class="sidebar"><ul id="sidebar-menu-list"></ul></div>
+
+    <div class="main-content">
+        <header>
+            <h2>My Leave Requests</h2>
+            <div class="header-actions">
+                <div class="user-wrapper">
+                    <img id="nav-user-pic" src="" width="40px" height="40px">
+                    <div><h4 id="nav-user-name"></h4><small id="nav-user-role">...</small></div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="account-wrapper" style="max-width: 600px; margin: 0 auto; padding: 2rem;">
+                <h3>Submit New Request</h3>
+                <form id="leave-form" onsubmit="submitLeave(event)" style="margin-top: 1.5rem;">
+                    <div class="form-group">
+                        <label>Choose Admin to Notify</label>
+                        <select id="leave-admin-select" required>
+                            <option value="">-- Select Admin --</option>
+                        </select>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group half">
+                            <label>Duration (Days)</label>
+                            <input type="number" id="leave-days" min="1" required placeholder="e.g. 5">
+                        </div>
+                        <div class="form-group half">
+                            <label>Leave Type</label>
+                            <select id="leave-type">
+                                <option value="Sick Leave">Sick Leave</option>
+                                <option value="Annual Leave">Annual Leave</option>
+                                <option value="Personal">Personal</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Reason</label>
+                        <textarea id="leave-reason" style="width:100%; padding:10px; border-radius:10px; border:1px solid #ddd;" rows="4" required placeholder="Explain your request..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-save" style="width: 100%;">Submit Request</button>
+                </form>
+                
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadUserData();
+            fillAdminDropdown();
+            loadMyLeaveHistory(); // <--- MAKE SURE THIS LINE IS HERE
+        });
+    </script>
+</body>
+</html>

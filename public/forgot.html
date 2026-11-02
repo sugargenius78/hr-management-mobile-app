@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Secure Reset</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="left-side">
+            <div class="color-overlay"></div>
+        </div>
+
+        <div class="right-side">
+            <div class="login-box">
+                <h1>Reset Password</h1>
+                <p class="subtitle">Secure Verification Required</p>
+
+                <div id="step-1">
+                    <div class="input-container">
+                        <i class="fas fa-envelope icon"></i>
+                        <input type="email" id="forgot-email" placeholder="Enter your email" required>
+                    </div>
+
+                    <button type="button" onclick="requestResetCode()" class="login-btn" id="btn-reset-password">Send Verification Code</button>
+                </div>
+
+                <div id="step-2" style="display: none;">
+                    <p style="color: #2ecc71; font-size: 13px; margin-bottom: 10px;">Code sent! Check Terminal.</p>
+                    
+                    <div class="input-container">
+                        <i class="fas fa-shield-alt icon"></i>
+                        <input type="text" id="reset-code" placeholder="Enter 6-digit Code">
+                    </div>
+
+                    <div class="input-container">
+                        <i class="fas fa-key icon"></i>
+                        <input type="password" id="reset-new-pass" placeholder="New Password">
+                    </div>
+
+                    <button onclick="verifyAndReset()" class="login-btn">Change Password</button>
+                </div>
+
+                <p class="signup-link"><a href="index.html">Back to Login</a></p>
+                <p id="msg" style="color: red; margin-top: 10px;"></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="custom-popup" class="popup-overlay">
+        <div class="popup-content">
+            <div class="popup-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2 id="popup-title">Success!</h2>
+            <p id="popup-message">Operation successful.</p>
+            <button onclick="closePopup()">OK</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // EMERGENCY SHIELD: Prevent any script from redirecting this page
+        window.onbeforeunload = function() {
+            // This is a temporary lock for debugging
+            console.log("Something tried to redirect you!");
+        };
+        
+        // Disable the global checkSession for this page specifically
+        window.checkSession = function() { 
+            console.log("checkSession was blocked on this public page."); 
+            return; 
+        };
+    </script>
+</body>
+</html>

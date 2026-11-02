@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SysteAdmin | HR Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <input type="checkbox" id="nav-toggle">
+    
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <h2><span class="fas fa-cube"></span> <span>HR System</span></h2>
+        </div>
+        <div class="sidebar-menu">
+            <ul id="sidebar-menu-list">
+                </ul>
+        </div>
+    </div>
+
+    <div class="main-content">
+        
+        <header>
+            <h2>
+                <label for="nav-toggle" class="mobile-toggle">
+                    <span class="fas fa-bars"></span>
+                </label>
+                Dashboard
+            </h2>
+
+            <div class="header-actions" style="display: flex; align-items: center; gap: 20px;"> 
+                           <div class="action-item" onclick="toggleNotifPanel()" style="position: relative; cursor: pointer;">
+                    <i class="fas fa-bell"></i>
+                    <span id="notif-count" class="badge">0</span>
+                    <div id="notif-panel" class="dropdown-panel" style="display: none;">
+                        <div class="panel-header">Notifications</div>
+                        <div id="notif-list" class="panel-content"></div>
+                    </div>
+                </div>
+
+                <div class="action-item" onclick="toggleChatList()" style="position: relative; cursor: pointer;">
+                    <span class="fas fa-comment-alt"></span>
+                    <span id="chat-count" class="badge" style="display:none; background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; vertical-align: top; margin-left: -10px;">0</span>
+                    <div id="chat-list-panel" class="dropdown-panel" style="display: none;">
+                        <div class="panel-header">Direct Messages</div>
+                        <div id="employee-chat-list" class="panel-content"></div>
+                    </div>
+                </div>
+                <div class="user-wrapper" style="display: flex; align-items: center; margin-left: 10px;">
+                    <img src="https://ui-avatars.com/api/?name=&background=ddd&color=fff" width="40px" height="40px" style="border-radius: 50%;" alt="" id="nav-user-pic">
+                    <div style="margin-left: 10px;">
+                        <h4 id="nav-user-name" style="font-size: 0.9rem; margin: 0;">&nbsp;</h4>
+                        <small id="nav-user-role" style="color: #7f8c8d;">...</small>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="cards">
+                <div class="card-single">
+                    <div><h1>...</h1><span>Total Employees</span></div>
+                    <div><span class="fas fa-users"></span></div>
+                </div>
+                <div class="card-single">
+                    <div><h1>...</h1><span>Departments</span></div>
+                    <div><span class="fas fa-building"></span></div>
+                </div>
+                <div class="card-single">
+                    <div><h1>...</h1><span>Active Tasks</span></div>
+                    <div><span class="fas fa-clipboard-check"></span></div>
+                </div>
+            </div>
+
+            <div class="recent-grid">
+                <div class="projects">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Recent Projects / Tasks</h3>
+                                <button onclick="window.location.href='tasks.html'">View All <span class="fas fa-arrow-right"></span></button>
+                            </div>
+                            <div class="card-body" id="recent-projects-container">
+                                <p style="padding: 1rem; color: #7f8c8d;">Loading projects...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="height: 30px;"></div>
+                <div class="customers">
+                    <div class="card">
+                        <div class="Departments-Overview">
+                            <div class="card-header">
+                                <h3>Departments Overview</h3>
+                                <button onclick="window.location.href='departments.html'">
+                                    View All <span class="fas fa-arrow-right"></span>
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <p style="padding: 1rem; color: #7f8c8d;">Syncing with database...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+ 
+    <div id="chat-popup" class="chat-popup-overlay" style="display:none;">
+        <div class="chat-window">
+            <div class="chat-header">
+                <span id="chat-with-name">Direct Message</span>
+                <button onclick="closeChatPopup()" style="background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;">&times;</button>
+            </div>
+            <div id="popup-messages" style="height: 350px; overflow-y: auto; padding: 15px; background: #f4f7f6;">
+                </div>
+            <div class="popup-footer" style="display:flex; padding:10px; border-top:1px solid #eee;">
+                <input type="text" id="popupInput" style="flex:1; padding:8px; border-radius:20px; border:1px solid #ddd;" placeholder="Type a message...">
+                <button onclick="sendPrivateMessage()" style="background:#1abc9c; color:white; border:none; padding:8px 15px; border-radius:50%; margin-left:5px;">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadUserData(); // <--- THIS LINE IS CRITICAL
+            
+            // Other page-specific functions might be here too (like fetchEmployees)
+        });
+    </script>
+</body>
+</html>

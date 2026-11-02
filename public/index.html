@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Portal Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+
+    <script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js')
+        .then(() => console.log("PWA Ready"));
+    }
+    </script>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <div class="left-side">
+            <div class="color-overlay"></div>
+        </div>
+
+        <div class="right-side">
+            <div class="login-box">
+                <h1>Welcome</h1>
+                <p class="subtitle">Log in to your account to continue</p>
+
+                <div class="input-container">
+                    <i class="fas fa-user icon"></i>
+                    <input type="email" id="email" placeholder="admin@test.com">
+                </div>
+
+                <div class="input-container">
+                    <i class="fas fa-lock icon"></i>
+                    <input type="password" id="password" placeholder="••••••••">
+                </div>
+
+                <div class="forgot-pass">
+                    <a href="forgot.html">Forgot your password?</a>
+                </div>
+
+                <button onclick="handleLogin()" class="login-btn">Log In</button>
+
+                <p class="signup-link">Don't have an account? <a href="register.html">Sign up!</a></p>
+                
+                <p id="error-msg" style="color: red; text-align: center; margin-top: 10px;"></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="custom-popup" class="popup-overlay" style="display: none;">
+        <div class="popup-content">
+            <div class="popup-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2 id="popup-title">Success!</h2>
+            <p id="popup-message">Action completed.</p>
+            <button onclick="closePopup()">OK</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

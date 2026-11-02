@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar | HR System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">>
+    <style>
+        #calendar {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .fc-header-toolbar {
+            margin-bottom: 20px !important;
+        }
+        .fc-button-primary {
+            background-color: #1abc9c !important;
+            border-color: #1abc9c !important;
+        }
+    </style>
+</head>
+<body>
+
+    <input type="checkbox" id="nav-toggle">
+    
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <h2><span class="fas fa-cube"></span> <span>HR System</span></h2>
+        </div>
+        <div class="sidebar-menu">
+            <ul id="sidebar-menu-list">
+                </ul>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h2>
+                <label for="nav-toggle" class="mobile-toggle">
+                    <span class="fas fa-bars"></span>
+                </label>
+                Organization Calendar
+            </h2>
+
+            <div class="user-wrapper">
+                <img id="nav-user-pic" src="https://ui-avatars.com/api/?name=User&background=ddd&color=fff" width="40px" height="40px" alt="">
+                
+                <div>
+                    <h4 id="nav-user-name">Loading...</h4>
+                    <small id="nav-user-role">Manager</small>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="card">
+                <div class="card-header">
+                    <h3>Schedules & Deadlines</h3>
+                </div>
+                <div class="card-body">
+                    <div id='calendar'></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const calendarEl = document.getElementById('calendar');
+            const user = JSON.parse(localStorage.getItem('user'));
+            
+            if (calendarEl && typeof FullCalendar !== 'undefined' && user) {
+                // Log this to your browser console (F12) to see what name is being sent
+                console.log("Fetching calendar for:", user.name);
+
+                const eventSource = (user.role === 'Admin') 
+                    ? '/api/calendar-events' 
+                    : `/api/employee-calendar/${encodeURIComponent(user.name)}`;
+
+                const calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'dayGridMonth',
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: '' 
+                    },
+                    events: eventSource,
+                    height: 'auto'
+                });
+                calendar.render();
+            }
+        });
+    </script>
+</body>
+</html>

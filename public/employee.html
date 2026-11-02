@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | Employee Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <input type="checkbox" id="nav-toggle">
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <h2><span class="fas fa-cube"></span> <span>HR System</span></h2>
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+                <li><a href="employee.html" class="active"><span class="fas fa-igloo"></span> <span>Dashboard</span></a></li>
+                <li><a href="operations.html"><span class="fas fa-project-diagram"></span> <span>Operations</span></a></li>
+                <li><a href="my-leaves.html"><span class="fas fa-clipboard-list"></span> <span>My Leaves</span></a></li>
+                <li><a href="calendar.html"><span class="fas fa-calendar-alt"></span> <span>Calendar</span></a></li>
+                <li><a href="account.html"><span class="fas fa-user-circle"></span> <span>Account</span></a></li>
+                <li><a href="#" onclick="logout()"><span class="fas fa-sign-out-alt"></span> <span>Logout</span></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h2>
+                <label for="nav-toggle" class="mobile-toggle">
+                    <span class="fas fa-bars"></span>
+                </label>
+                Dashboard
+            </h2>
+
+            <div class="header-actions"> 
+                <div class="action-item" onclick="toggleNotifPanel()">
+                    <i class="fas fa-bell"></i>
+                    <span id="notif-count" class="badge">0</span>
+                    <div id="notif-panel" class="dropdown-panel">
+                        <div class="panel-header">Notifications</div>
+                        <div id="notif-list" class="panel-content"></div>
+                    </div>
+                </div>
+
+                <div class="action-item" onclick="toggleChatList()" style="position: relative; cursor: pointer;">
+                    <i class="fas fa-comment-alt"></i>
+                    <span id="chat-count" class="badge" style="display:none; position: absolute; top: -5px; right: -5px; background: red; color: white; border-radius: 50%; padding: 2px 5px; font-size: 0.7rem;">0</span>
+                    <div id="chat-list-panel" class="dropdown-panel" style="display: none;">
+                        <div class="panel-header">Direct Messages</div>
+                        <div id="employee-chat-list" class="panel-content"></div>
+                    </div>
+                </div>
+
+                <div class="user-wrapper">
+                    <img id="nav-user-pic" src="" width="40px" height="40px">
+                    <div>
+                        <h4 id="nav-user-name"></h4>
+                        <small id="nav-user-role">...</small>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="cards">
+                <div class="card-single">
+                    <div><h1 id="emp-total-tasks">0</h1><span>My Tasks</span></div>
+                    <div><span class="fas fa-tasks"></span></div>
+                </div>
+                <div class="card-single">
+                    <div><h1 id="emp-pending-leaves">0</h1><span>Pending Leaves</span></div>
+                    <div><span class="fas fa-clock"></span></div>
+                </div>
+                <div class="card-single">
+                    <div><h1 id="emp-active-projects">0</h1><span>My Projects</span></div>
+                    <div><span class="fas fa-folder-open"></span></div>
+                </div>
+            </div>
+
+            <div class="recent-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>My Team Members</h3>
+                        <span id="my-team-title" style="font-size: 0.8rem; color: #1abc9c;"></span>
+                    </div>
+                    <div class="card-body" id="team-members-list">
+                        </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>My Leave History</h3>
+                        <button onclick="window.location.href='my-leaves.html'" class="btn-save" style="width: auto;">Request New</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table width="100%">
+                                <thead>
+                                    <tr>
+                                        <td>Duration/Reason</td>
+                                        <td>Status</td>
+                                    </tr>
+                                </thead>
+                                <tbody id="my-leave-history">
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div id="chat-popup" class="chat-popup-overlay" style="display:none;">
+        <div class="chat-window">
+            <div class="chat-header">
+                <span id="chat-with-name">Direct Message</span>
+                <button onclick="closeChatPopup()">&times;</button>
+            </div>
+            <div id="popup-messages" style="height: 350px; overflow-y: auto; padding: 15px; background: #f4f7f6;">
+            </div>
+            <div class="popup-footer">
+                <input type="text" id="popupInput" placeholder="Type a message...">
+                <button onclick="sendPrivateMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

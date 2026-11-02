@@ -1,0 +1,16 @@
+{
+  "name": "Nexus HR Management System",
+  "short_name": "NexusHR",
+  "start_url": "/index.html",
+  "scope": "/", 
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1abc9c",
+  "icons": [
+    {
+      "src": "https://ui-avatars.com/api/?name=HR&background=1abc9c&color=fff&size=192",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
